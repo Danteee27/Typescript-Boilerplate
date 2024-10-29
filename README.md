@@ -1,1 +1,1 @@
-# Typescript-Boilerplate
+# Simple Kanban Project Boilerplate
