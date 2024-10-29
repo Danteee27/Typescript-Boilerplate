@@ -1,0 +1,25 @@
+version: '3.8'
+services:
+  db:
+    image: postgres
+    environment:
+      POSTGRES_USER: user
+      POSTGRES_PASSWORD: password
+      POSTGRES_DB: kanban
+    ports:
+      - '5432:5432'
+
+  server:
+    build: ./server
+    depends_on:
+      - db
+    environment:
+      DB_HOST: db
+      DB_USER: user
+      DB_PASS: password
+      DB_NAME: kanban
+    ports:
+      - '5000:5000'
+    volumes:
+      - ./server:/app
+    command: sh -c "npm install && ts-node src/server.ts"
